@@ -1,5 +1,6 @@
 #clone the repo
-git clone http://git.ipxe.org/ipxe.git
+git clone https://github.com/ipxe/ipxe.git
+
 
 ```
 cd ipxe/src
