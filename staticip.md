@@ -1,6 +1,22 @@
 #clone the repo
 git clone https://github.com/ipxe/ipxe.git
 
+kernel: rhcos-<version>-live-kernel-<architecture>
+
+initramfs: rhcos-<version>-live-initramfs.<architecture>.img
+
+rootfs: rhcos-<version>-live-rootfs.<architecture>.img
+  
+ example:
+ 
+ https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.6/latest/
+ 
+ kernel: https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.6/latest/rhcos-4.6.8-x86_64-live-kernel-x86_64
+
+initramfs: https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.6/latest/rhcos-4.6.8-x86_64-live-initramfs.x86_64.img
+
+rootfs: https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.6/latest/rhcos-4.6.8-x86_64-live-rootfs.x86_64.img
+
 
 ```
 cd ipxe/src
