@@ -3,7 +3,7 @@ git clone http://git.ipxe.org/ipxe.git
 
 ```
 cd ipxe/src
-cat >ubuntu-amd64-installer.ipxe <<EOF
+cat >coreos-amd64-installer.ipxe <<EOF
 #!ipxe
 #static ip settings
 ifopen net0
@@ -24,13 +24,23 @@ show hostname
 show domain_name
 route
 
+
+#Coreos 
 set menutimeout 5
-echo Starting Ubuntu x64 installer for ${hostname}
-set base-url http://archive.ubuntu.com/ubuntu/dists/trusty/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64
-kernel ${base-url}/linux priority=critical
-initrd ${base-url}/initrd.gz
+echo Starting CoreOS x64 installer for ${hostname}
+set base-url http://192.168.122.1:8000
+kernel ${base-url}/fedora-coreos-31.20200310.3.0-live-kernel-x86_64 ip=dhcp rd.neednet=1 console=tty0 ignition.firstboot ignition.platform.id=metal ignition.config.url=https://dustymabe.com/2020-04-04/automated_install.ign
+initrd ${base-url}/fedora-coreos-31.20200310.3.0-live-initramfs.x86_64.img
+boot
+
+
+#set menutimeout 5
+#echo Starting Ubuntu x64 installer for ${hostname}
+#set base-url http://archive.ubuntu.com/ubuntu/dists/trusty/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64
+#kernel ${base-url}/linux priority=critical
+#initrd ${base-url}/initrd.gz
 #NOTE: make sure you update the LOCAL_NETWORK_IP and preseed file present there
-imgargs linux auto=true url=http://LOCAL_NETWORK_IP/preseed.cfg interface=eth0 hostname=${hostname} domain=${domain_name} netcfg/disable_dhcp=true netcfg/get_ipaddress=${net0/ip} netcfg/get_netmask=${net0/netmask} netcfg/get_gateway=${net0/gateway} netcfg/get_nameservers=${dns}
+#imgargs linux auto=true url=http://LOCAL_NETWORK_IP/preseed.cfg interface=eth0 hostname=${hostname} domain=${domain_name} netcfg/disable_dhcp=true #netcfg/get_ipaddress=${net0/ip} netcfg/get_netmask=${net0/netmask} netcfg/get_gateway=${net0/gateway} netcfg/get_nameservers=${dns}
 boot || 
 
 # If everything failed, give the user some options
