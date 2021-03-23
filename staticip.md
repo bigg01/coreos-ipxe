@@ -1,6 +1,7 @@
 #clone the repo
 git clone http://git.ipxe.org/ipxe.git
 
+```
 cd ipxe/src
 cat >ubuntu-amd64-installer.ipxe <<EOF
 #!ipxe
@@ -50,3 +51,4 @@ make bin/ipxe.usb EMBED=./ubuntu-amd64-installer.ipxe
 #transfer the usb image to your usbdisk
 #Note: XX is your usbdevice id.
 dd if=bin/ipxe.usb of=/dev/sdXX
+```
