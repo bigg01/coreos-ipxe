@@ -17,6 +17,9 @@ initramfs: https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.6/
 
 rootfs: https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.6/latest/rhcos-4.6.8-x86_64-live-rootfs.x86_64.img
 
+IPXE: deps
+https://ipxe.org/download
+
 
 ```
 cd ipxe/src
