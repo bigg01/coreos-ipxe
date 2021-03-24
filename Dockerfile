@@ -10,7 +10,9 @@ LABEL maintainer="Oliver Guggenbuehl<info@containerize.ch>" \
 ENV TZ=Europe/Zurich \
     TERM=xterm
 
+WORKDIR /ipxe
 
-RUN RPMS="gcc binutils make perl liblzma or xz header files mtools mkisofs syslinux" \
-   yum install --setopt=tsflags=nodocs -y $RPM && yum clean all && \
+RUN RPMS="gcc binutils make perl xz xz-libs* xz-devel mtools mkisofs syslinux git" && \  
+   yum install --setopt=tsflags=nodocs -y ${RPMS} && yum clean all && mkdir -p /ipxe && \
+   cd /ipxe && git clone https://github.com/ipxe/ipxe.git
  
