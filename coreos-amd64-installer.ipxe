@@ -4,42 +4,6 @@ ifopen net0
 set net0/ip 192.168.1.240
 set net0/netmask 255.255.255.0
 set net0/gateway 192.168.1.1
-set dns 192.168.1.1
-set hostname puppet1
-set domain_name domain.local
-#dhcp
-
-echo "Configured IP Details:"
-show net0/ip
-show net0/netmask
-show net0/gateway
-show dns
-show hostname
-show domain_name
-route
-
-
-#Coreos 
-set menutimeout 5
-echo Starting CoreOS x64 installer for 
-set base-url http://192.168.122.1:8000
-kernel url/fedora-coreos-31.20200310.3.0-live-kernel-x86_64 ip=dhcp rd.neednet=1 console=tty0 ignition.firstboot ignition.platform.id=metal ignition.config.url=https://dustymabe.com/2020-04-04/automated_install.ign
-initrd url/fedora-coreos-31.20200310.3.0-live-initramfs.x86_64.img
-boot || 
-
-# If everything failed, give the user some options
-echo Boot from url failed
-prompt --key 0x197e --timeout 2000 Press F12 to investigate || exit
-shell
-
-
-
-#!ipxe
-#static ip settings
-ifopen net0
-set net0/ip 192.168.1.240
-set net0/netmask 255.255.255.0
-set net0/gateway 192.168.1.1
 set dns 192.168.1.11
 set hostname server123
 set domain_name exmaple.com
