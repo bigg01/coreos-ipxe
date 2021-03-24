@@ -31,3 +31,37 @@ boot ||
 echo Boot from url failed
 prompt --key 0x197e --timeout 2000 Press F12 to investigate || exit
 shell
+
+
+
+#!ipxe
+#static ip settings
+ifopen net0
+set net0/ip 192.168.1.240
+set net0/netmask 255.255.255.0
+set net0/gateway 192.168.1.1
+set dns 192.168.1.11
+set hostname server123
+set domain_name exmaple.com
+
+echo "Configured IP Details:"
+show net0/ip
+show net0/netmask
+show net0/gateway
+show dns
+show hostname
+show domain_name
+route
+
+
+#Coreos
+set menutimeout 5
+echo Starting CoreOS x64 installer for
+kernel   http://webserver.exmaple.com:8080/rhcos-<version>-x86_64-live-kernel-x86_64  rd.neednet=1 coreos.inst=yes coreos.inst.install_dev=sda ip=192.168.1.240::192.168.1.1:255.255.255.0::ens192:none:192.168.1.11: nameserver=192.168.1.11 coreos.live.rootfs_url=http://webserver.exmaple.com:8080/rhcos-<version>-x86_64-live-rootfs.x86_64.img  coreos.inst.ignition_url=http://http://webserver.exmaple.com:8080/server123.exmaple.com.ign
+initrd http:///webserver.exmaple.com:8080/rhcos-<version>-x86_64-live-initramfs.x86_64.img
+boot ||
+
+# If everything failed, give the user some options
+echo Boot from url failed
+prompt --key 0x197e --timeout 2000 Press F12 to investigate || exit
+shell
