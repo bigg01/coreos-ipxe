@@ -15,4 +15,4 @@ sudo podman run -it --privileged --pull=always -v .:/data \
 
 
 ## proxmox example
-![alt text](img/ipxe_example.png)
+![alt text](https://github.com/bigg01/coreos-ipxe/blob/main/img/ipxe_example.png)
