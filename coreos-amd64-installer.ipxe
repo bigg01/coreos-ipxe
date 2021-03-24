@@ -17,6 +17,7 @@ show hostname
 show domain_name
 route
 
+ping --count 1 ${net0/gateway} 
 
 #Coreos
 set menutimeout 5
