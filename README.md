@@ -1,3 +1,4 @@
+![Docker Automated build](https://img.shields.io/docker/automated/bigg01/coreos-ipxe?style=plastic)
 # coreos-ipxe
 
 bash build.sh
