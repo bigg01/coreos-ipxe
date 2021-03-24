@@ -4,7 +4,7 @@ FROM centos:centos8
 # set labels for metadata
 LABEL maintainer="Oliver Guggenbuehl<info@containerize.ch>" \
   name="ipxe" \
-  description="Container for compliance" \
+  description="Container for building ipxe iso images" \
   summary="container for building ipxe"
 
 ENV TZ=Europe/Zurich \
