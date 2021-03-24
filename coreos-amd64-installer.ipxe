@@ -22,8 +22,12 @@ ping --count 1 ${net0/gateway}
 #Coreos
 set menutimeout 5
 echo Starting CoreOS x64 installer for
-kernel   http://webserver.exmaple.com:8080/rhcos-<version>-x86_64-live-kernel-x86_64  rd.neednet=1 coreos.inst=yes coreos.inst.install_dev=sda ip=192.168.1.240::192.168.1.1:255.255.255.0::ens192:none:192.168.1.11: nameserver=192.168.1.11 coreos.live.rootfs_url=http://webserver.exmaple.com:8080/rhcos-<version>-x86_64-live-rootfs.x86_64.img  coreos.inst.ignition_url=http://http://webserver.exmaple.com:8080/server123.exmaple.com.ign
-initrd http:///webserver.exmaple.com:8080/rhcos-<version>-x86_64-live-initramfs.x86_64.img
+set webserver webserver.exmaple.com:8080
+set ocp_version 4.6.8
+set install_dev sda
+set ignition_file server123.exmaple.com.ign
+kernel   http://${webserver}/rhcos-${ocp_version}-x86_64-live-kernel-x86_64  rd.neednet=1 coreos.inst=yes coreos.inst.install_dev=${install_dev} ip=192.168.1.240::192.168.1.1:255.255.255.0::ens192:none:192.168.1.11: nameserver=192.168.1.11 coreos.live.rootfs_url=http://${webserver}/rhcos-${ocp_version}-x86_64-live-rootfs.x86_64.img  coreos.inst.ignition_url=http://${webserver}/${ignition_file}
+initrd http:///${webserver}/rhcos-${ocp_version}-x86_64-live-initramfs.x86_64.img
 boot ||
 
 # If everything failed, give the user some options
