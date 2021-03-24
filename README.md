@@ -4,12 +4,12 @@ bash build.sh
 
 # interactive
 ```sh
-sudo podman run --privileged -it -v .   :/data -w data bigg01/ocp-coreos-ipxe:v1 bash
+sudo podman run --privileged -it -v .   :/data -w data bigg01/coreos-ipxe:latest bash
 ```
 # full command
 ```sh
-sudo podman run -it --privileged  -v .:/data \
- bigg01/ocp-coreos-ipxe:v1 \
+sudo podman run -it --privileged --pull=always -v .:/data \
+ bigg01/coreos-ipxe:latest \
  bash -c "cp -p /data/coreos-amd64-installer.ipxe /ipxe/ipxe/src/ && ls -l coreos-amd64-installer.ipxe && cd /ipxe/ipxe/src; make bin/ipxe.iso EMBED=./coreos-amd64-installer.ipxe; cp -pv bin/ipxe.iso /data"
 ```
 
