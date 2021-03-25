@@ -26,7 +26,7 @@ set webserver webserver.exmaple.com:8080
 set ocp_version 4.6.8
 set install_dev sda
 set ignition_file server123.exmaple.com.ign
-kernel   http://${webserver}/rhcos-${ocp_version}-x86_64-live-kernel-x86_64  rd.neednet=1 coreos.inst=yes coreos.inst.install_dev=${install_dev} ip=192.168.1.240::${net0/gateway}:255.255.255.0::ens192:none:192.168.1.11: nameserver=192.168.1.11 coreos.live.rootfs_url=http://${webserver}/rhcos-${ocp_version}-x86_64-live-rootfs.x86_64.img  coreos.inst.ignition_url=http://${webserver}/${ignition_file}
+kernel   http://${webserver}/rhcos-${ocp_version}-x86_64-live-kernel-x86_64  rd.neednet=1 coreos.inst=yes random.trust_cpu=on coreos.inst.install_dev=${install_dev} ip=192.168.1.240::${net0/gateway}:255.255.255.0::ens192:none:192.168.1.11: nameserver=192.168.1.11 coreos.live.rootfs_url=http://${webserver}/rhcos-${ocp_version}-x86_64-live-rootfs.x86_64.img  coreos.inst.ignition_url=http://${webserver}/${ignition_file}
 initrd http:///${webserver}/rhcos-${ocp_version}-x86_64-live-initramfs.x86_64.img
 boot ||
 
